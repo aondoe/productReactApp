@@ -3,7 +3,7 @@ import productLine from "./Product_List";   //This is the raw data from an array
 import ProductFormat from "./ProductFormat"
 import './store.css';
 
-let hello="Welcome to our store";
+let hello="Welcome to our greatest Store";
 document.title="Super Store";
 
 let productComponent=productLine//.filter(products=>products.price<14)  //Filter out the records by price
