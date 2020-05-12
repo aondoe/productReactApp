@@ -1,9 +1,9 @@
 import React from 'react';
 import './store.css';
 
-/**
- *      This is the form which will provide the structure for the page.
- * */ 
+/*********
+*      This is the form which will provide the structure for the page.
+*********/ 
 
 function ProductFormat(props){
 
