@@ -45,9 +45,6 @@ class ProductFormat extends React.Component{
                                                             {this.state.quantity}   {/*How many products do you want*/}
                                                         <input onClick={()=>this.addQuan()} value="+" type="button"/>
                                                     </span>
-                                                    <span style={{display: this.state.quantity>0?"block":"none"}}>
-                                                        Total Price: <span>{this.state.quantity*this.props.price}</span>
-                                                    </span>
 
                                                 </div>
                                             <p class="desc">
@@ -55,6 +52,9 @@ class ProductFormat extends React.Component{
                                             Description:
                                         </strong>
                                     {this.props.description}
+                                                    <span style={{display: this.state.quantity>0?"block":"none"}}>
+                                                        <strong>Total Price:</strong> <span>{this.state.quantity*this.props.price}</span>
+                                                    </span>
                                 </p>
                             </div>
                         </div>
