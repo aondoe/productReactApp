@@ -14,7 +14,19 @@ span{
     margin-left:5px;
 }
 .productBox{
-    border:3px solid maroon;
+    border:3px solid;
     padding:5px;
     margin-bottom:5px;
+}
+.completeProductBox{
+    border:3px solid #64de2a;
+    padding:5px;
+    margin-bottom:5px;
+}
+.calc{
+    margin:5px;
+}
+.many{
+    font-size:18px;
+    font-weight:bolder;
 }

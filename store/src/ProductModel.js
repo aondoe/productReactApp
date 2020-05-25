@@ -1,5 +1,6 @@
 import React from 'react';
 import './store.css';
+import Loading from "./Loading";
 import ProductFormat from "./ProductFormat";
 import productLine from "./Product_List";
 
@@ -7,7 +8,19 @@ document.title="Super Store";
 
 class ProductModel extends React.Component{
     
+        constructor(){
+            super();
+            this.state={
+                products:productLine,
+                quantity:0
+            }
+        }
+        componentDidMount(){
+            setTimeout(()=>{this.setState({loaded:true})},1800)
+        }
+        
     render(){
+    
         let welcome="Welcome to our greatest Store";
         let shopping="My Shopping list";
         let productComponent=productLine//.filter(products=>products.price<14)  //Filter out the records by price
@@ -21,8 +34,11 @@ class ProductModel extends React.Component{
                                 addQuan={this.addQuan}
                                 />)
 
+        
+
     return(
         <div>
+            <Loading loaded={this.state.loaded} />    
             <div class="row">
                 <div class="col-lg-7">
                     <h1 class="text-center">{welcome}</h1>
@@ -30,7 +46,6 @@ class ProductModel extends React.Component{
                     </div>
                         <div class="col-lg-5">
                             <h1 class="text-center">{shopping}</h1>
-                                
                         </div>
             </div>
         </div>)

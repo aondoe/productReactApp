@@ -13,7 +13,6 @@ class ProductFormat extends React.Component{
         }
         this.addQuan=this.addQuan.bind(this);   //Will increase the quantity for a product, which will multiply price to quantity
         this.decQuan=this.decQuan.bind(this);   //Will increase the quantity for a product, which will multiply price to quantity
-
     }
 
     addQuan(){
@@ -26,6 +25,7 @@ class ProductFormat extends React.Component{
             return {quantity: oldState.quantity-1}
         })
     }
+
     render(){
         return (
             <div>
@@ -33,34 +33,33 @@ class ProductFormat extends React.Component{
                     <div class="col-lg-1">
                         </div>
                         <div class="col-lg-7">
-                            <div class="productBox">
+                            <div class={this.state.quantity>0?"completeProductBox":"productBox"}>
                                 <h2>{this.props.product_name}</h2>
+                                    <p class="desc">
+                                            <strong>
+                                                Description:
+                                            </strong>
+                                            {this.props.description}
+                                                </p>
                                             <strong>
                                                 Price:
+                                                    {this.props.price}
                                             </strong>
                                                 <div>
-                                                    {this.props.price}
-                                                    <span>
-                                                        <input onClick={()=>this.decQuan()} value="-" type="button"/>
+                                                        <span class="many">How Many?</span>
+                                                        <input class="calc" onClick={()=>this.decQuan()} value="-" type="button"/>
                                                             {this.state.quantity}   {/*How many products do you want*/}
-                                                        <input onClick={()=>this.addQuan()} value="+" type="button"/>
-                                                    </span>
-
+                                                             <input class="calc" onClick={()=>this.addQuan()} value="+" type="button"/>
+                                                        <span style={{display: this.state.quantity>0?"block":"none"}}>
+                                                            <strong>Total Price: $</strong> 
+                                                            {((this.state.quantity*this.props.price)*(0.06*this.props.price)).toFixed(2)}
+                                                        </span>   {/* Will show up if quantity is greater than 0*/}
                                                 </div>
-                                            <p class="desc">
-                                        <strong>
-                                            Description:
-                                        </strong>
-                                    {this.props.description}
-                                                    <span style={{display: this.state.quantity>0?"block":"none"}}>
-                                                        <strong>Total Price:</strong> <span>{this.state.quantity*this.props.price}</span>
-                                                    </span>
-                                </p>
+                                    </div>
+                                </div>
+                        <div class="col-lg-4">
                             </div>
-                        </div>
-                    <div class="col-lg-4">
-                        </div>
-                </div>
+                    </div>
             </div>)
     }
 }
