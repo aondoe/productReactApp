@@ -7,17 +7,24 @@ import productLine from "./Product_List";
 document.title="Super Store";
 
 class ProductModel extends React.Component{
-    
-        constructor(){
-            super();
-            this.state={
-                products:productLine,
-                quantity:0
-            }
+
+    constructor(){
+        super();
+
+        this.state={
+            loaded: false,
+            quantity:0
         }
-        componentDidMount(){
-            setTimeout(()=>{this.setState({loaded:true})},1800)
-        }
+    }
+
+    componentDidMount(props){
+        setTimeout(
+            this.setState({
+                loaded:true
+            }),
+        13800)
+    }
+       
         
     render(){
     
@@ -30,24 +37,32 @@ class ProductModel extends React.Component{
                                 product_name={products.product_name}
                                 price={products.price}
                                 description={products.description}
-                                quantity={products.quantity}
+                                quantity={this.state.quantity}
                                 addQuan={this.addQuan}
                                 />)
-
-        
-
+        let someSum=0;
+        let shopList=productLine
+        .map(products => <ProductFormat key={products.id}
+            id={products.id}
+            product_name={products.product_name}
+            price={products.price}
+            description={products.description}
+            quantity={this.state.quantity}
+            />)
+        .filter(prod=>prod.quantity>0)
+            
     return(
         <div>
-            <Loading loaded={this.state.loaded} />    
+            <Loading loaded={this.state.loaded} />
+
             <div class="row">
-                <div class="col-lg-7">
+                <div class="col-lg-12">
                     <h1 class="text-center">{welcome}</h1>
                         {productComponent}
                     </div>
-                        <div class="col-lg-5">
-                            <h1 class="text-center">{shopping}</h1>
-                        </div>
+
             </div>
+                 {shopList}
         </div>)
     }
 }
